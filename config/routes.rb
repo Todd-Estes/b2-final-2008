@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :doctors do
+    resources :patients do
+    resources :appointments, only: :destroy
   end
+end
 end

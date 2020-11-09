@@ -16,8 +16,9 @@ describe 'Doctors Show Page' do
                            university: "UT Austin",
                           hospital_id: hospital.id)
 
+                          require "pry"; binding.pry
+
     visit "hospitals/#{hospital.id}"
-    save_and_open_page
     expect(page).to have_content(hospital.name)
 
     expect(page).to have_content(hospital.doctor_count)

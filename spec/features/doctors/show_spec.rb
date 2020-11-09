@@ -39,10 +39,20 @@ describe 'Doctors Show Page' do
                                       patient_id: patient_2.id)
     visit "/doctors/#{doctor.id}"
 
-    expect(page).to have_button("Remove Patient")
+    within("#patient-#{patient_1.id}") do
+      expect(page).to have_button("Remove Patient")
+    end
 
-    click_button("Remove Patient")
-    expect(page).to not_have_content(patient_1.name)
-    expect(page).to not_have_content(patient_1.age)
+    within("#patient-#{patient_2.id}") do
+      expect(page).to have_button("Remove Patient")
+    end
 
+    within("#patient-#{patient_1.id}") do
+      click_button("Remove Patient")
+    end
+
+    expect(current_path).to eq("/doctors/#{doctor.id}")
+    expect(page).to have_no_content(patient_1.name)
+    expect(page).to have_no_content(patient_1.age)
+  end
 end
