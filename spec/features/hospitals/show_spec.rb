@@ -16,8 +16,6 @@ describe 'Doctors Show Page' do
                            university: "UT Austin",
                           hospital_id: hospital.id)
 
-                          require "pry"; binding.pry
-
     visit "hospitals/#{hospital.id}"
     expect(page).to have_content(hospital.name)
 
